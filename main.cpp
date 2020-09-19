@@ -14,9 +14,11 @@ int main (int argc, char** argv){
 	double variance4 = 0;
 	double standev = 0;
 	double counter = 0;
+//initialize variables for part 1
 	
 	std::ifstream ifinput("input.txt");
 	std::string datainput((std::istreambuf_iterator<char>(ifinput)), (std::istreambuf_iterator<char>()));
+//Create variable datainput using the data in the txt file
 	
 	char checkChar = 'a';
 	char checkCharC = 'c';
@@ -46,7 +48,12 @@ int main (int argc, char** argv){
 	int countGC = 0;
 	int countGG = 0;
 	int countGT = 0;
+//initialize the variables for part 2
+	
 	for (int i = 0; i < datainput.size(); i++){
+//check every character (capital and lower case) in datainput
+//check for repeating bigram patterns (capital and lower case)
+//increment variables for later math
 		if(datainput[i] == checkChar){
 			++ charCount;
 			++ counter;
@@ -272,11 +279,15 @@ int main (int argc, char** argv){
 			}
 		}
 	}
+	
 	ifstream input;
+//this should probably be higher in the code, but it also works down here
+//open input.txt and check for error
 	input.open("input.txt");
 	if(input.fail()){
 		cout << "Error! The file could not be opened." << endl;
 	}
+	
 	sum += (charCount + charCountC + charCountG + charCountT);
 	mean += (sum/counter);
 	int count2 = (counter - 1);
@@ -285,7 +296,11 @@ int main (int argc, char** argv){
 	variance3 += variance2 - variance1;
 	variance4 += variance3 / count2;
 	standev += sqrt(variance4);
+//calculate the sum/mean/variance/standard deviation
 	
+//create output file yourname.out and identify the creator
+//add the results to the output file
+//calculate the probabilities and add to the output file
 	ofstream output;
 	output.open ("corey.out");
 	output << "Corey Spielman 2316074 \n"; 
@@ -298,23 +313,24 @@ int main (int argc, char** argv){
 	output << "Num of C's = " << charCountC << ", Probability = " << (charCountC/sum) << endl;
 	output << "Num of G's = " << charCountG << ", Probability = " << (charCountG/sum) << endl;
 	output << "Num of T's = " << charCountT << ", Probability = " << (charCountT/sum) << endl;
-	output << "AA Probability: " << ((countAA/sum)/2) << endl;
-	output << "AC Probability: " << ((countAC/sum)/2) << endl;
-	output << "AG Probability: " << ((countAG/sum)/2) << endl;
-	output << "AT Probability: " << ((countAT/sum)/2) << endl;
-	output << "CA Probability: " << ((countCA/sum)/2) << endl;
-	output << "CC Probability: " << ((countCC/sum)/2) << endl;
-	output << "CG Probability: " << ((countCG/sum)/2) << endl;
-	output << "CT Probability: " << ((countCT/sum)/2) << endl;
-	output << "GA Probability: " << ((countGA/sum)/2) << endl;
-	output << "GC Probability: " << ((countGC/sum)/2) << endl;
-	output << "GG Probability: " << ((countGG/sum)/2) << endl;
-	output << "GT Probability: " << ((countGT/sum)/2) << endl;
-	output << "TA Probability: " << ((countTA/sum)/2) << endl;
-	output << "TC Probability: " << ((countTC/sum)/2) << endl;
-	output << "TG Probability: " << ((countTG/sum)/2) << endl;
-	output << "TT Probability: " << ((countTT/sum)/2) << endl;
+	output << "AA Probability: " << ((countAA/sum)) << endl;
+	output << "AC Probability: " << ((countAC/sum)) << endl;
+	output << "AG Probability: " << ((countAG/sum)) << endl;
+	output << "AT Probability: " << ((countAT/sum)) << endl;
+	output << "CA Probability: " << ((countCA/sum)) << endl;
+	output << "CC Probability: " << ((countCC/sum)) << endl;
+	output << "CG Probability: " << ((countCG/sum)) << endl;
+	output << "CT Probability: " << ((countCT/sum)) << endl;
+	output << "GA Probability: " << ((countGA/sum)) << endl;
+	output << "GC Probability: " << ((countGC/sum)) << endl;
+	output << "GG Probability: " << ((countGG/sum)) << endl;
+	output << "GT Probability: " << ((countGT/sum)) << endl;
+	output << "TA Probability: " << ((countTA/sum)) << endl;
+	output << "TC Probability: " << ((countTC/sum)) << endl;
+	output << "TG Probability: " << ((countTG/sum)) << endl;
+	output << "TT Probability: " << ((countTT/sum)) << endl;
 	cout << "Successfuly compiled!\n" << endl;
 	output.close();
 	return 0;
+	//close file and end the program
 }
