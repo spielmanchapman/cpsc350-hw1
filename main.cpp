@@ -8,10 +8,15 @@ using namespace std;
 int main (int argc, char** argv){
 	double sum = 0;
 	double mean = 0;
-	double variance1 = 0;
-	double variance2 = 0;
-	double variance3 = 0;
-	double variance4 = 0;
+	double var1 = 0;
+	double var11 = 0;
+	double var2 = 0;
+	double var22 = 0;
+	double var3 = 0;
+	double var33 = 0;
+	double var4 = 0;
+	double var44 = 0;
+	double var5 = 0;
 	double standev = 0;
 	double counter = 0;
 //initialize variables for part 1
@@ -289,13 +294,17 @@ int main (int argc, char** argv){
 	}
 	
 	sum += (charCount + charCountC + charCountG + charCountT);
-	mean += (sum/counter);
-	int count2 = (counter - 1);
-	variance1 += (mean*mean) / counter;
-	variance2 += ((charCount*charCount) + (charCountC*charCountC) + (charCountG*charCountG) + (charCountT*charCountT));
-	variance3 += variance2 - variance1;
-	variance4 += variance3 / count2;
-	standev += sqrt(variance4);
+	mean += (sum/4);
+	var1 += (charCount-mean);
+	var11 += (var1 * var1);
+	var2 += (charCountC-mean);
+	var22 += (var2 * var2);
+	var3 += (charCountG-mean);
+	var33 += (var3 * var3);
+	var4 += (charCountT-mean);
+	var44 += (var4 * var4);
+	var5 += (((var11 + var22 + var33 + var44)/3)/100);
+	standev += (sqrt(var5));
 //calculate the sum/mean/variance/standard deviation
 	
 //create output file yourname.out and identify the creator
@@ -307,7 +316,7 @@ int main (int argc, char** argv){
 	output << "CPSC 350 Homework 1 \n";
 	output << "The Sum = " << sum << endl; 
 	output << "The Mean = " << mean << endl;
-	output << "The Variance = " << variance4 << endl; 
+	output << "The Variance = " << var5 << endl; 
 	output << "The Standard Deviation = " << standev << endl;
 	output << "Num of A's = " << charCount << ", Probability = " << (charCount/sum) << endl;
 	output << "Num of C's = " << charCountC << ", Probability = " << (charCountC/sum) << endl;
